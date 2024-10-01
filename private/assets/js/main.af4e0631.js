@@ -71,7 +71,7 @@
         (t.default = {
           title: "Game Code Academy",
           tagline: "Make Games. Learn Microcontrollers. Practice Coding.",
-          url: "https://gamecodeacademy.com",
+          url: "https://gamecodeacademy.org",
           baseUrl: "/",
           onBrokenLinks: "throw",
           onBrokenMarkdownLinks: "warn",
@@ -91,7 +91,7 @@
                   activeSidebarClassName: "navbar__link--active",
                 },
                 {
-                  href: "https://www.gamecodeacademy.com",
+                  href: "https://www.gamecodeacademy.org",
                   label: "Shop",
                   position: "left",
                 },
@@ -107,11 +107,11 @@
                 },
                 {
                   title: "Contact",
-                  items: [{ html: "<div>sales@gamecodeacademy.com</div>" }],
+                  items: [{ html: "<div>sales@gamecodeacademy.org</div>" }],
                 },
                 {
                   title: "More",
-                  items: [{ label: "Shop", to: "https://gamecodeacademy.com" }],
+                  items: [{ label: "Shop", to: "https://gamecodeacademy.org" }],
                 },
               ],
               copyright: "Copyright \xa92024 GameCodeAcademy.",

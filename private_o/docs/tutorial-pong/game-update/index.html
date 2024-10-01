@@ -1,23 +1,1165 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en" dir="ltr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="generator" content="Docusaurus v2.0.0-beta.3">
-<title data-react-helmet="true">Game Update | Game Code Academy</title><meta data-react-helmet="true" property="og:url" content="https://gamecodeacademy.com/docs/tutorial-pong/game-update"><meta data-react-helmet="true" name="docusaurus_locale" content="en"><meta data-react-helmet="true" name="docusaurus_version" content="current"><meta data-react-helmet="true" name="docusaurus_tag" content="docs-default-current"><meta data-react-helmet="true" property="og:title" content="Game Update | Game Code Academy"><meta data-react-helmet="true" name="description" content="With loop structure and data structures defined for the game, we now have to use our loop&#x27;s structure to update our data, bringing one game state to the next."><meta data-react-helmet="true" property="og:description" content="With loop structure and data structures defined for the game, we now have to use our loop&#x27;s structure to update our data, bringing one game state to the next."><link data-react-helmet="true" rel="shortcut icon" href="/img/favicon.ico"><link data-react-helmet="true" rel="canonical" href="https://gamecodeacademy.com/docs/tutorial-pong/game-update"><link data-react-helmet="true" rel="alternate" href="https://gamecodeacademy.com/docs/tutorial-pong/game-update" hreflang="en"><link data-react-helmet="true" rel="alternate" href="https://gamecodeacademy.com/docs/tutorial-pong/game-update" hreflang="x-default"><link rel="stylesheet" href="/assets/css/styles.875b8b6d.css">
-<link rel="preload" href="/assets/js/runtime~main.f385b889.js" as="script">
-<link rel="preload" href="/assets/js/main.25520d17.js" as="script">
-</head>
-<body>
-<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){var t=null;try{t=localStorage.getItem("theme")}catch(t){}return t}();t(null!==e?e:"light")}()</script><div id="__docusaurus">
-<div><a href="#" class="skipToContent_1oUP">Skip to main content</a></div><nav class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Navigation bar toggle" class="navbar__toggle clean-btn" type="button" tabindex="0"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/"><img src="/img/gca.svg" alt="GCA Logo" class="themedImage_1VuW themedImage--light_3UqQ navbar__logo"><img src="/img/gca.svg" alt="GCA Logo" class="themedImage_1VuW themedImage--dark_hz6m navbar__logo"><b class="navbar__title">Home</b></a><a class="navbar__item navbar__link navbar__link--active" href="/docs/intro">GCA Game Tutorials</a><a href="https://www.gamecodeacademy.com" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link"><span>Shop<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_3J9K"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></span></a></div><div class="navbar__items navbar__items--right"><div class="react-toggle displayOnlyInLargeViewport_GrZ2 react-toggle--disabled"><div class="react-toggle-track" role="button" tabindex="-1"><div class="react-toggle-track-check"><span class="toggle_71bT">🌜</span></div><div class="react-toggle-track-x"><span class="toggle_71bT">🌞</span></div><div class="react-toggle-thumb"></div></div><input type="checkbox" class="react-toggle-screenreader-only" aria-label="Switch between dark and light mode"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div><div class="navbar-sidebar"><div class="navbar-sidebar__brand"><a class="navbar__brand" href="/"><img src="/img/gca.svg" alt="GCA Logo" class="themedImage_1VuW themedImage--light_3UqQ navbar__logo"><img src="/img/gca.svg" alt="GCA Logo" class="themedImage_1VuW themedImage--dark_hz6m navbar__logo"><b class="navbar__title">Home</b></a></div><div class="navbar-sidebar__items"><div class="menu"><ul class="menu__list"><li class="menu__list-item"><a class="menu__link navbar__link--active" href="/docs/intro">GCA Game Tutorials</a></li><li class="menu__list-item"><a href="https://www.gamecodeacademy.com" target="_blank" rel="noopener noreferrer" class="menu__link"><span>Shop<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_3J9K"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></span></a></li></ul></div></div></div></nav><div class="main-wrapper docs-wrapper doc-page"><div class="docPage_31aa"><aside class="docSidebarContainer_3Kbt"><div class="sidebar_15mo"><nav class="menu menu--responsive thin-scrollbar menu_Bmed menuWithAnnouncementBar_2WvA" aria-label="Sidebar navigation"><button aria-label="Open menu" aria-haspopup="true" class="button button--secondary button--sm menu__button" type="button"><svg class="sidebarMenuIcon_fgN0" width="24" height="24" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" href="/docs/intro">Getting Started</a></li><li class="menu__list-item menu__list-item--collapsed"><a class="menu__link menu__link--sublist" href="#">Tutorial - Snake</a><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/docs/tutorial-snake/wire-the-device">Hardware Setup</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/docs/tutorial-snake/setup-matrix">Snake Setup</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/docs/tutorial-snake/game-data">Game Data</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/docs/tutorial-snake/game-update">Game Update</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/docs/tutorial-snake/game-render">Game Render</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/docs/tutorial-snake/congratulations">Congratulations!</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/docs/tutorial-snake/demo">Demo</a></li></ul></li><li class="menu__list-item menu__list-item--collapsed"><a class="menu__link menu__link--sublist" href="#">Tutorial - Stack It</a><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/docs/tutorial-stackit/wire-the-device">Hardware Setup</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/docs/tutorial-stackit/setup-matrix">Stack It Setup</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/docs/tutorial-stackit/game-data">Game Data</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/docs/tutorial-stackit/game-update">Game Update</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/docs/tutorial-stackit/game-render">Game Render</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/docs/tutorial-stackit/finish">Finished!</a></li><li class="menu__list-item"><a class="menu__link" tabindex="-1" href="/docs/tutorial-stackit/demo">Demo</a></li></ul></li><li class="menu__list-item"><a class="menu__link menu__link--sublist menu__link--active" href="#">Tutorial - Pong</a><ul class="menu__list"><li class="menu__list-item"><a class="menu__link" tabindex="0" href="/docs/tutorial-pong/wire-the-device">Hardware Setup</a></li><li class="menu__list-item"><a class="menu__link" tabindex="0" href="/docs/tutorial-pong/setup-matrix">Pong Setup</a></li><li class="menu__list-item"><a class="menu__link" tabindex="0" href="/docs/tutorial-pong/game-data">Game Data</a></li><li class="menu__list-item"><a aria-current="page" class="menu__link menu__link--active active" tabindex="0" href="/docs/tutorial-pong/game-update">Game Update</a></li><li class="menu__list-item"><a class="menu__link" tabindex="0" href="/docs/tutorial-pong/game-render">Game Render</a></li><li class="menu__list-item"><a class="menu__link" tabindex="0" href="/docs/tutorial-pong/finish">Finished!</a></li><li class="menu__list-item"><a class="menu__link" tabindex="0" href="/docs/tutorial-pong/demo">Demo</a></li></ul></li></ul></nav></div></aside><main class="docMainContainer_3ufF"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_3FnS"><div class="docItemContainer_33ec"><article><div class="markdown"><header><h1 class="h1Heading_27L5">Game Update</h1></header><p>With loop structure and data structures defined for the game, we now have to use our loop&#x27;s structure to update our data, bringing one game state to the next.</p><h2><a aria-hidden="true" tabindex="-1" class="anchor enhancedAnchor_2LWZ" id="update-structure"></a>Update Structure<a class="hash-link" href="#update-structure" title="Direct link to heading">#</a></h2><p>Here&#x27;s a general outline for the structure of our update function:</p><ul><li>Get user input</li><li>Handle paddle movement</li><li>Check for ball collisions &amp; handle cases</li><li>Move the ball</li><li>Move the AI paddle</li><li>Check gamestates</li></ul><h2><a aria-hidden="true" tabindex="-1" class="anchor enhancedAnchor_2LWZ" id="user-input"></a>User Input<a class="hash-link" href="#user-input" title="Direct link to heading">#</a></h2><p>First thing&#x27;s first, users interact with Pong through the joystick. Without the user input, nothing interesting happens in the game.</p><p>In pong, the user input we care about is just the Joystick&#x27;s y-axis position. This is because the only thing the user can control in Pong is if the joystick is going to move up or down vertically on the screen.</p><p>So, let&#x27;s begin working on <code>void updateGame()</code> by writing code to determine the joystick&#x27;s y-position during a game tick:</p><div class="codeBlockContainer_K1bP"><div style="color:#393A34;background-color:#f6f8fa" class="codeBlockTitle_eoMF">pong.ino</div><div class="codeBlockContent_hGly c"><pre tabindex="0" class="prism-code language-c codeBlock_23N8 thin-scrollbar codeBlockWithTitle_2JqI" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_39YC"><span class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">void</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">updateGame</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token comment" style="color:#999988;font-style:italic">// Read joystick values</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword" style="color:#00009f">int</span><span class="token plain"> yValue </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">analogRead</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">joyY</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword" style="color:#00009f">int</span><span class="token plain"> yMap </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">map</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">yValue</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1023</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">-</span><span class="token number" style="color:#36acaa">10</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">10</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span></span></code></pre><button type="button" aria-label="Copy code to clipboard" class="copyButton_Ue-o clean-btn">Copy</button></div></div><p>The above code reads in the Y value from the joystick, and then maps the raw analog signal rage (0, 4095) to a more reasonable (-10, 10) range in the variable yMap.</p><h2><a aria-hidden="true" tabindex="-1" class="anchor enhancedAnchor_2LWZ" id="handle-player-paddle-movement"></a>Handle Player Paddle Movement<a class="hash-link" href="#handle-player-paddle-movement" title="Direct link to heading">#</a></h2><p>With the Y-Axis value read in, we can handle moving the player&#x27;s paddle.</p><p>In particular, we should check if the Joystick&#x27;s Y-Axis is offset by some minimum threshold. If it is, we should then determine the direction the player wants the paddle to move. During this process we will also wrap in out-of-bounds collision detection, as it ends up being natural to check for:</p><div class="codeBlockContainer_K1bP"><div style="color:#393A34;background-color:#f6f8fa" class="codeBlockTitle_eoMF">stackit.ino</div><div class="codeBlockContent_hGly c"><pre tabindex="0" class="prism-code language-c codeBlock_23N8 thin-scrollbar codeBlockWithTitle_2JqI" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_39YC"><span class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">void</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">updateGame</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// ABOVE CODE</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block">
-</span></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token comment" style="color:#999988;font-style:italic">// Handle player paddle movement logic</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token function" style="color:#d73a49">abs</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">yMap</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&gt;</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">2</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Ensure the magnitude of joystick y-axis offset is above threshold of 2</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">      </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">yMap </span><span class="token operator" style="color:#393A34">&gt;</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Check if the joystick is pointing up</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">          </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">playerPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">y </span><span class="token operator" style="color:#393A34">+</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&lt;=</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">HEIGHT </span><span class="token operator" style="color:#393A34">-</span><span class="token plain"> playerPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">size</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Check if the paddle will go out of bounds</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">              playerPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">y</span><span class="token operator" style="color:#393A34">++</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Move paddle up</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">      </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">else</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Joystick is pointing down</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">          </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">playerPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">y </span><span class="token operator" style="color:#393A34">-</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&gt;=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Check if paddle will go out of bounds</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">              playerPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">y</span><span class="token operator" style="color:#393A34">--</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Move paddle down</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">      </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token punctuation" style="color:#393A34">}</span></span></code></pre><button type="button" aria-label="Copy code to clipboard" class="copyButton_Ue-o clean-btn">Copy</button></div></div><p>As you can see in the code, if we encounter an out of bounds event we just don&#x27;t update to position of the paddle, leaving it where it is.</p><h2><a aria-hidden="true" tabindex="-1" class="anchor enhancedAnchor_2LWZ" id="ball-collisions"></a>Ball Collisions<a class="hash-link" href="#ball-collisions" title="Direct link to heading">#</a></h2><p>The ball has quite a few collision cases. Namely, the following are of interest:</p><ul><li>Out of bounds on horizontally on the left (AI Scores)</li><li>Out of bounds on horizontally on the right (Player Scores)</li><li>Out of bounds on vertically (Ball bounces off)</li><li>Collides with paddle (Ball bounces off of paddle)</li></ul><div class="codeBlockContainer_K1bP"><div style="color:#393A34;background-color:#f6f8fa" class="codeBlockTitle_eoMF">pong.ino</div><div class="codeBlockContent_hGly c"><pre tabindex="0" class="prism-code language-c codeBlock_23N8 thin-scrollbar codeBlockWithTitle_2JqI" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_39YC"><span class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">void</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">updateGame</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// ABOVE CODE</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block">
-</span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token comment" style="color:#999988;font-style:italic">// Update ball</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">int</span><span class="token plain"> ballColX </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">round</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">ball</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">x </span><span class="token operator" style="color:#393A34">+</span><span class="token plain"> ball</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">xVel</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Calculate new ball x position</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">int</span><span class="token plain"> ballColY </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">round</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">ball</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">y </span><span class="token operator" style="color:#393A34">+</span><span class="token plain"> ball</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">yVel</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Calculate new ball y position</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">ballColX </span><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Ball out of bounds left</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">        aiPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">score</span><span class="token operator" style="color:#393A34">++</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Add to player&#x27;s score</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token function" style="color:#d73a49">newRound</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Start new round</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">return</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Stop executing the updateGame function</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">ballColX </span><span class="token operator" style="color:#393A34">&gt;=</span><span class="token plain"> WIDTH</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Ball out of bounds right</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">        playerPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">score</span><span class="token operator" style="color:#393A34">++</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Add to player&#x27;s score</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token function" style="color:#d73a49">newRound</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Start new round</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">return</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Stop executing the updateGame function</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">ballColY </span><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">||</span><span class="token plain"> ballColY </span><span class="token operator" style="color:#393A34">&gt;=</span><span class="token plain"> HEIGHT</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Ball is out of bounds vertically</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">        ball</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">yVel </span><span class="token operator" style="color:#393A34">*=</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">-</span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Reflect the ball off the wall by inverting y-velocity</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token comment" style="color:#999988;font-style:italic">// Ball hits player&#x27;s paddle</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">ballColX </span><span class="token operator" style="color:#393A34">==</span><span class="token plain"> playerPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">x</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&amp;&amp;</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">ballColY </span><span class="token operator" style="color:#393A34">&gt;=</span><span class="token plain"> playerPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">y</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&amp;&amp;</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">ballColY </span><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain"> playerPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">y </span><span class="token operator" style="color:#393A34">+</span><span class="token plain"> playerPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">size</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">        ball</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">xVel </span><span class="token operator" style="color:#393A34">*=</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">-</span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Reflect ball off of paddle by inverting x-velocity</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token comment" style="color:#999988;font-style:italic">// Ball hits AI&#x27;s paddle</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">ballColX </span><span class="token operator" style="color:#393A34">==</span><span class="token plain"> aiPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">x</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&amp;&amp;</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">ballColY </span><span class="token operator" style="color:#393A34">&gt;=</span><span class="token plain"> aiPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">y</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&amp;&amp;</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">ballColY </span><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain"> aiPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">y </span><span class="token operator" style="color:#393A34">+</span><span class="token plain"> aiPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">size</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">        ball</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">xVel </span><span class="token operator" style="color:#393A34">*=</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">-</span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Reflect ball off of paddle by inverting x-velocity</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span></span></code></pre><button type="button" aria-label="Copy code to clipboard" class="copyButton_Ue-o clean-btn">Copy</button></div></div><h2><a aria-hidden="true" tabindex="-1" class="anchor enhancedAnchor_2LWZ" id="move-the-ball"></a>Move the Ball<a class="hash-link" href="#move-the-ball" title="Direct link to heading">#</a></h2><p>Now that we&#x27;ve updated the velocity of the ball based on possible collision events (and stopped updating with <code>return</code> if either player has scored), we can simply add the velocity to the ball&#x27;s position to get the updated ball position.</p><div class="codeBlockContainer_K1bP"><div style="color:#393A34;background-color:#f6f8fa" class="codeBlockTitle_eoMF">pong.ino</div><div class="codeBlockContent_hGly c"><pre tabindex="0" class="prism-code language-c codeBlock_23N8 thin-scrollbar codeBlockWithTitle_2JqI" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_39YC"><span class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">void</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">updateGame</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// ABOVE CODE</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block">
-</span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token comment" style="color:#999988;font-style:italic">// Move ball</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    ball</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">x </span><span class="token operator" style="color:#393A34">+=</span><span class="token plain"> ball</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">xVel</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    ball</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">y </span><span class="token operator" style="color:#393A34">+=</span><span class="token plain"> ball</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">yVel</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span></span></code></pre><button type="button" aria-label="Copy code to clipboard" class="copyButton_Ue-o clean-btn">Copy</button></div></div><h2><a aria-hidden="true" tabindex="-1" class="anchor enhancedAnchor_2LWZ" id="ai-paddle"></a>AI Paddle<a class="hash-link" href="#ai-paddle" title="Direct link to heading">#</a></h2><p>Now comes the interesting part: making an AI paddle. There&#x27;s a LOT of different ways to go about this. Some approaches to paddle AI can be highly sophisticated. Others can be very simple with a clever idea.</p><p>A well programmed AI should be good at the game, but not so good that a player can never beat it. Thus, the goal of an AI programmer should be to find the sweet spot in creating an AI that fits the difficultly level of the game they&#x27;re aiming for.</p><p>In this tutorial, we&#x27;ll try to make the simplest &quot;medium&quot; difficulty AI possible. To start, let&#x27;s create a new function <code>void aiUpdate()</code> and put it above <code>void updateGame()</code>:</p><div class="codeBlockContainer_K1bP"><div style="color:#393A34;background-color:#f6f8fa" class="codeBlockTitle_eoMF">pong.ino</div><div class="codeBlockContent_hGly c"><pre tabindex="0" class="prism-code language-c codeBlock_23N8 thin-scrollbar codeBlockWithTitle_2JqI" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_39YC"><span class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">void</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">aiUpdate</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span></span></code></pre><button type="button" aria-label="Copy code to clipboard" class="copyButton_Ue-o clean-btn">Copy</button></div></div><p>The update procedure behind our AI will be this:</p><ul><li>Generate a random number between 0-4. If the number is 4, continue. Otherwise don&#x27;t move the AI paddle.</li><li>Check if the paddle&#x27;s middle is above or below the ball&#x27;s current position.</li><li>If above, move the paddle down. Otherwise move the paddle up.</li></ul><p>Extremely simple! Here&#x27;s the code putting that to action:</p><div class="codeBlockContainer_K1bP"><div style="color:#393A34;background-color:#f6f8fa" class="codeBlockTitle_eoMF">pong.ino</div><div class="codeBlockContent_hGly c"><pre tabindex="0" class="prism-code language-c codeBlock_23N8 thin-scrollbar codeBlockWithTitle_2JqI" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_39YC"><span class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">void</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">aiUpdate</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">(</span><span class="token function" style="color:#d73a49">rand</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">%</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">5</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">%</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">4</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">==</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">aiPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">y </span><span class="token operator" style="color:#393A34">+</span><span class="token plain"> aiPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">size </span><span class="token operator" style="color:#393A34">/</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">2</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&gt;</span><span class="token plain"> ball</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">y</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">            </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">aiPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">y </span><span class="token operator" style="color:#393A34">-</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&gt;=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">                aiPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">y</span><span class="token operator" style="color:#393A34">--</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">else</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">            </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">aiPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">y </span><span class="token operator" style="color:#393A34">+</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&lt;=</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">HEIGHT </span><span class="token operator" style="color:#393A34">-</span><span class="token plain"> playerPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">size</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">                aiPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">y</span><span class="token operator" style="color:#393A34">++</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span></span></code></pre><button type="button" aria-label="Copy code to clipboard" class="copyButton_Ue-o clean-btn">Copy</button></div></div><div class="admonition admonition-tip alert alert--success"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="16" viewBox="0 0 12 16"><path fill-rule="evenodd" d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"></path></svg></span>tip</h5></div><div class="admonition-content"><p>We can even change the &quot;difficulty&quot; of the AI by changing the random number generation step to include more numbers (say, 0-10, leaving a 10% chance of moving the paddle). Try messing with it and see what happens!</p></div></div><p>Now we can just go ahead and call this function from our <code>gameUpdate</code> function to update the AI paddles position each update tick:</p><div class="codeBlockContainer_K1bP"><div style="color:#393A34;background-color:#f6f8fa" class="codeBlockTitle_eoMF">pong.ino</div><div class="codeBlockContent_hGly c"><pre tabindex="0" class="prism-code language-c codeBlock_23N8 thin-scrollbar codeBlockWithTitle_2JqI" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_39YC"><span class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">void</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">updateGame</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// ABOVE CODE</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block">
-</span></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token comment" style="color:#999988;font-style:italic">// Update AI</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token function" style="color:#d73a49">aiUpdate</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span></span></code></pre><button type="button" aria-label="Copy code to clipboard" class="copyButton_Ue-o clean-btn">Copy</button></div></div><h2><a aria-hidden="true" tabindex="-1" class="anchor enhancedAnchor_2LWZ" id="game-states"></a>Game States<a class="hash-link" href="#game-states" title="Direct link to heading">#</a></h2><p>At the end of the update process, we have to check our game state cases to determine if any special actions need to be performed. In particular, we need to decide if the player has won or lost the game.</p><p>To accomplish this, we need to break down what it specifically means for each case to be true.</p><h3><a aria-hidden="true" tabindex="-1" class="anchor enhancedAnchor_2LWZ" id="winning"></a>Winning<a class="hash-link" href="#winning" title="Direct link to heading">#</a></h3><p>For a player to have won, they just need to have scored <code>WINNING_SCORE</code> points.</p><p>We&#x27;ll just have the screen flash green when the player wins and then reset the game:</p><div class="codeBlockContainer_K1bP"><div style="color:#393A34;background-color:#f6f8fa" class="codeBlockTitle_eoMF">pong.ino</div><div class="codeBlockContent_hGly c"><pre tabindex="0" class="prism-code language-c codeBlock_23N8 thin-scrollbar codeBlockWithTitle_2JqI" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_39YC"><span class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">void</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">updateGame</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// ABOVE CODE</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block">
-</span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token comment" style="color:#999988;font-style:italic">// Check winning gamestate</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">playerPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">score </span><span class="token operator" style="color:#393A34">==</span><span class="token plain"> WINNING_SCORE</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token function" style="color:#d73a49">renderBlink</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">0x00ff00</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Blink green</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token function" style="color:#d73a49">initGame</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Reset game</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">return</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Stop updating</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">}</span></span></code></pre><button type="button" aria-label="Copy code to clipboard" class="copyButton_Ue-o clean-btn">Copy</button></div></div><div class="admonition admonition-note alert alert--secondary"><div class="admonition-heading"><h5><span class="admonition-icon"><svg xmlns="http://www.w3.org/2000/svg" width="14" height="16" viewBox="0 0 14 16"><path fill-rule="evenodd" d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"></path></svg></span>note</h5></div><div class="admonition-content"><p>We assume the existence of a function called <code>renderBlink(hex)</code>. We will implement this feature in <strong>Render Game</strong>.</p></div></div><h3><a aria-hidden="true" tabindex="-1" class="anchor enhancedAnchor_2LWZ" id="losing"></a>Losing<a class="hash-link" href="#losing" title="Direct link to heading">#</a></h3><p>For a player to have lost, the AI needs to have scored <code>WINNING_SCORE</code> points.</p><p>Similar to the winning case, we&#x27;ll just have the screen flash red when the player loses and then reset the game:</p><div class="codeBlockContainer_K1bP"><div style="color:#393A34;background-color:#f6f8fa" class="codeBlockTitle_eoMF">pong.ino</div><div class="codeBlockContent_hGly c"><pre tabindex="0" class="prism-code language-c codeBlock_23N8 thin-scrollbar codeBlockWithTitle_2JqI" style="color:#393A34;background-color:#f6f8fa"><code class="codeBlockLines_39YC"><span class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">void</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">updateGame</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// ABOVE CODE</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block">
-</span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token comment" style="color:#999988;font-style:italic">// Check losing game state</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">aiPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">score </span><span class="token operator" style="color:#393A34">==</span><span class="token plain"> WINNING_SCORE</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token function" style="color:#d73a49">renderBlink</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">0xff0000</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Blink red</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token function" style="color:#d73a49">initGame</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Reset game</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">return</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Stop updating</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">}</span></span></code></pre><button type="button" aria-label="Copy code to clipboard" class="copyButton_Ue-o clean-btn">Copy</button></div></div></div><footer class="row docusaurus-mt-lg"><div class="col"><a href="https://github.com/GameCodeAcademy/docs/tutorial-pong/game-update.md" target="_blank" rel="noreferrer noopener"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_2_ui" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_3DPF"></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages navigation"><div class="pagination-nav__item"><a class="pagination-nav__link" href="/docs/tutorial-pong/game-data"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">« Game Data</div></a></div><div class="pagination-nav__item pagination-nav__item--next"><a class="pagination-nav__link" href="/docs/tutorial-pong/game-render"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">Game Render »</div></a></div></nav></div></div><div class="col col--3"><div class="tableOfContents_35-E thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#update-structure" class="table-of-contents__link">Update Structure</a></li><li><a href="#user-input" class="table-of-contents__link">User Input</a></li><li><a href="#handle-player-paddle-movement" class="table-of-contents__link">Handle Player Paddle Movement</a></li><li><a href="#ball-collisions" class="table-of-contents__link">Ball Collisions</a></li><li><a href="#move-the-ball" class="table-of-contents__link">Move the Ball</a></li><li><a href="#ai-paddle" class="table-of-contents__link">AI Paddle</a></li><li><a href="#game-states" class="table-of-contents__link">Game States</a><ul><li><a href="#winning" class="table-of-contents__link">Winning</a></li><li><a href="#losing" class="table-of-contents__link">Losing</a></li></ul></li></ul></div></div></div></div></main></div></div><footer class="footer footer--dark"><div class="container"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Docs</div><ul class="footer__items"><li class="footer__item"><a class="footer__link-item" href="/docs/intro">GCA Game Tutorials</a></li></ul></div><div class="col footer__col"><div class="footer__title">Contact</div><ul class="footer__items"><li class="footer__item"><div>sales@gamecodeacademy.com</div></li></ul></div><div class="col footer__col"><div class="footer__title">More</div><ul class="footer__items"><li class="footer__item"><a href="https://gamecodeacademy.com" target="_blank" rel="noopener noreferrer" class="footer__link-item">Shop</a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright ©2021 GameCodeAcademy.</div></div></div></footer></div>
-<script src="/assets/js/runtime~main.f385b889.js"></script>
-<script src="/assets/js/main.25520d17.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="generator" content="Docusaurus v2.0.0-beta.3" />
+    <title data-react-helmet="true">Game Update | Game Code Academy</title>
+    <meta
+      data-react-helmet="true"
+      property="og:url"
+      content="https://gamecodeacademy.org/docs/tutorial-pong/game-update"
+    />
+    <meta data-react-helmet="true" name="docusaurus_locale" content="en" />
+    <meta
+      data-react-helmet="true"
+      name="docusaurus_version"
+      content="current"
+    />
+    <meta
+      data-react-helmet="true"
+      name="docusaurus_tag"
+      content="docs-default-current"
+    />
+    <meta
+      data-react-helmet="true"
+      property="og:title"
+      content="Game Update | Game Code Academy"
+    />
+    <meta
+      data-react-helmet="true"
+      name="description"
+      content="With loop structure and data structures defined for the game, we now have to use our loop&#x27;s structure to update our data, bringing one game state to the next."
+    />
+    <meta
+      data-react-helmet="true"
+      property="og:description"
+      content="With loop structure and data structures defined for the game, we now have to use our loop&#x27;s structure to update our data, bringing one game state to the next."
+    />
+    <link
+      data-react-helmet="true"
+      rel="shortcut icon"
+      href="/img/favicon.ico"
+    />
+    <link
+      data-react-helmet="true"
+      rel="canonical"
+      href="https://gamecodeacademy.org/docs/tutorial-pong/game-update"
+    />
+    <link
+      data-react-helmet="true"
+      rel="alternate"
+      href="https://gamecodeacademy.org/docs/tutorial-pong/game-update"
+      hreflang="en"
+    />
+    <link
+      data-react-helmet="true"
+      rel="alternate"
+      href="https://gamecodeacademy.org/docs/tutorial-pong/game-update"
+      hreflang="x-default"
+    />
+    <link rel="stylesheet" href="/assets/css/styles.875b8b6d.css" />
+    <link
+      rel="preload"
+      href="/assets/js/runtime~main.f385b889.js"
+      as="script"
+    />
+    <link rel="preload" href="/assets/js/main.25520d17.js" as="script" />
+  </head>
+  <body>
+    <script>
+      !(function () {
+        function t(t) {
+          document.documentElement.setAttribute("data-theme", t);
+        }
+        var e = (function () {
+          var t = null;
+          try {
+            t = localStorage.getItem("theme");
+          } catch (t) {}
+          return t;
+        })();
+        t(null !== e ? e : "light");
+      })();
+    </script>
+    <div id="__docusaurus">
+      <div><a href="#" class="skipToContent_1oUP">Skip to main content</a></div>
+      <nav class="navbar navbar--fixed-top">
+        <div class="navbar__inner">
+          <div class="navbar__items">
+            <button
+              aria-label="Navigation bar toggle"
+              class="navbar__toggle clean-btn"
+              type="button"
+              tabindex="0"
+            >
+              <svg
+                width="30"
+                height="30"
+                viewBox="0 0 30 30"
+                aria-hidden="true"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-miterlimit="10"
+                  stroke-width="2"
+                  d="M4 7h22M4 15h22M4 23h22"
+                ></path>
+              </svg></button
+            ><a class="navbar__brand" href="/"
+              ><img
+                src="/img/gca.svg"
+                alt="GCA Logo"
+                class="themedImage_1VuW themedImage--light_3UqQ navbar__logo"
+              /><img
+                src="/img/gca.svg"
+                alt="GCA Logo"
+                class="themedImage_1VuW themedImage--dark_hz6m navbar__logo"
+              /><b class="navbar__title">Home</b></a
+            ><a
+              class="navbar__item navbar__link navbar__link--active"
+              href="/docs/intro"
+              >GCA Game Tutorials</a
+            ><a
+              href="https://www.gamecodeacademy.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="navbar__item navbar__link"
+              ><span
+                >Shop<svg
+                  width="13.5"
+                  height="13.5"
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  class="iconExternalLink_3J9K"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"
+                  ></path></svg></span
+            ></a>
+          </div>
+          <div class="navbar__items navbar__items--right">
+            <div
+              class="react-toggle displayOnlyInLargeViewport_GrZ2 react-toggle--disabled"
+            >
+              <div class="react-toggle-track" role="button" tabindex="-1">
+                <div class="react-toggle-track-check">
+                  <span class="toggle_71bT">🌜</span>
+                </div>
+                <div class="react-toggle-track-x">
+                  <span class="toggle_71bT">🌞</span>
+                </div>
+                <div class="react-toggle-thumb"></div>
+              </div>
+              <input
+                type="checkbox"
+                class="react-toggle-screenreader-only"
+                aria-label="Switch between dark and light mode"
+              />
+            </div>
+          </div>
+        </div>
+        <div role="presentation" class="navbar-sidebar__backdrop"></div>
+        <div class="navbar-sidebar">
+          <div class="navbar-sidebar__brand">
+            <a class="navbar__brand" href="/"
+              ><img
+                src="/img/gca.svg"
+                alt="GCA Logo"
+                class="themedImage_1VuW themedImage--light_3UqQ navbar__logo"
+              /><img
+                src="/img/gca.svg"
+                alt="GCA Logo"
+                class="themedImage_1VuW themedImage--dark_hz6m navbar__logo"
+              /><b class="navbar__title">Home</b></a
+            >
+          </div>
+          <div class="navbar-sidebar__items">
+            <div class="menu">
+              <ul class="menu__list">
+                <li class="menu__list-item">
+                  <a class="menu__link navbar__link--active" href="/docs/intro"
+                    >GCA Game Tutorials</a
+                  >
+                </li>
+                <li class="menu__list-item">
+                  <a
+                    href="https://www.gamecodeacademy.org"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="menu__link"
+                    ><span
+                      >Shop<svg
+                        width="13.5"
+                        height="13.5"
+                        aria-hidden="true"
+                        viewBox="0 0 24 24"
+                        class="iconExternalLink_3J9K"
+                      >
+                        <path
+                          fill="currentColor"
+                          d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"
+                        ></path></svg></span
+                  ></a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class="main-wrapper docs-wrapper doc-page">
+        <div class="docPage_31aa">
+          <aside class="docSidebarContainer_3Kbt">
+            <div class="sidebar_15mo">
+              <nav
+                class="menu menu--responsive thin-scrollbar menu_Bmed menuWithAnnouncementBar_2WvA"
+                aria-label="Sidebar navigation"
+              >
+                <button
+                  aria-label="Open menu"
+                  aria-haspopup="true"
+                  class="button button--secondary button--sm menu__button"
+                  type="button"
+                >
+                  <svg
+                    class="sidebarMenuIcon_fgN0"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 30 30"
+                    aria-hidden="true"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-miterlimit="10"
+                      stroke-width="2"
+                      d="M4 7h22M4 15h22M4 23h22"
+                    ></path>
+                  </svg>
+                </button>
+                <ul class="menu__list">
+                  <li class="menu__list-item">
+                    <a class="menu__link" href="/docs/intro">Getting Started</a>
+                  </li>
+                  <li class="menu__list-item menu__list-item--collapsed">
+                    <a class="menu__link menu__link--sublist" href="#"
+                      >Tutorial - Snake</a
+                    >
+                    <ul class="menu__list">
+                      <li class="menu__list-item">
+                        <a
+                          class="menu__link"
+                          tabindex="-1"
+                          href="/docs/tutorial-snake/wire-the-device"
+                          >Hardware Setup</a
+                        >
+                      </li>
+                      <li class="menu__list-item">
+                        <a
+                          class="menu__link"
+                          tabindex="-1"
+                          href="/docs/tutorial-snake/setup-matrix"
+                          >Snake Setup</a
+                        >
+                      </li>
+                      <li class="menu__list-item">
+                        <a
+                          class="menu__link"
+                          tabindex="-1"
+                          href="/docs/tutorial-snake/game-data"
+                          >Game Data</a
+                        >
+                      </li>
+                      <li class="menu__list-item">
+                        <a
+                          class="menu__link"
+                          tabindex="-1"
+                          href="/docs/tutorial-snake/game-update"
+                          >Game Update</a
+                        >
+                      </li>
+                      <li class="menu__list-item">
+                        <a
+                          class="menu__link"
+                          tabindex="-1"
+                          href="/docs/tutorial-snake/game-render"
+                          >Game Render</a
+                        >
+                      </li>
+                      <li class="menu__list-item">
+                        <a
+                          class="menu__link"
+                          tabindex="-1"
+                          href="/docs/tutorial-snake/congratulations"
+                          >Congratulations!</a
+                        >
+                      </li>
+                      <li class="menu__list-item">
+                        <a
+                          class="menu__link"
+                          tabindex="-1"
+                          href="/docs/tutorial-snake/demo"
+                          >Demo</a
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="menu__list-item menu__list-item--collapsed">
+                    <a class="menu__link menu__link--sublist" href="#"
+                      >Tutorial - Stack It</a
+                    >
+                    <ul class="menu__list">
+                      <li class="menu__list-item">
+                        <a
+                          class="menu__link"
+                          tabindex="-1"
+                          href="/docs/tutorial-stackit/wire-the-device"
+                          >Hardware Setup</a
+                        >
+                      </li>
+                      <li class="menu__list-item">
+                        <a
+                          class="menu__link"
+                          tabindex="-1"
+                          href="/docs/tutorial-stackit/setup-matrix"
+                          >Stack It Setup</a
+                        >
+                      </li>
+                      <li class="menu__list-item">
+                        <a
+                          class="menu__link"
+                          tabindex="-1"
+                          href="/docs/tutorial-stackit/game-data"
+                          >Game Data</a
+                        >
+                      </li>
+                      <li class="menu__list-item">
+                        <a
+                          class="menu__link"
+                          tabindex="-1"
+                          href="/docs/tutorial-stackit/game-update"
+                          >Game Update</a
+                        >
+                      </li>
+                      <li class="menu__list-item">
+                        <a
+                          class="menu__link"
+                          tabindex="-1"
+                          href="/docs/tutorial-stackit/game-render"
+                          >Game Render</a
+                        >
+                      </li>
+                      <li class="menu__list-item">
+                        <a
+                          class="menu__link"
+                          tabindex="-1"
+                          href="/docs/tutorial-stackit/finish"
+                          >Finished!</a
+                        >
+                      </li>
+                      <li class="menu__list-item">
+                        <a
+                          class="menu__link"
+                          tabindex="-1"
+                          href="/docs/tutorial-stackit/demo"
+                          >Demo</a
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                  <li class="menu__list-item">
+                    <a
+                      class="menu__link menu__link--sublist menu__link--active"
+                      href="#"
+                      >Tutorial - Pong</a
+                    >
+                    <ul class="menu__list">
+                      <li class="menu__list-item">
+                        <a
+                          class="menu__link"
+                          tabindex="0"
+                          href="/docs/tutorial-pong/wire-the-device"
+                          >Hardware Setup</a
+                        >
+                      </li>
+                      <li class="menu__list-item">
+                        <a
+                          class="menu__link"
+                          tabindex="0"
+                          href="/docs/tutorial-pong/setup-matrix"
+                          >Pong Setup</a
+                        >
+                      </li>
+                      <li class="menu__list-item">
+                        <a
+                          class="menu__link"
+                          tabindex="0"
+                          href="/docs/tutorial-pong/game-data"
+                          >Game Data</a
+                        >
+                      </li>
+                      <li class="menu__list-item">
+                        <a
+                          aria-current="page"
+                          class="menu__link menu__link--active active"
+                          tabindex="0"
+                          href="/docs/tutorial-pong/game-update"
+                          >Game Update</a
+                        >
+                      </li>
+                      <li class="menu__list-item">
+                        <a
+                          class="menu__link"
+                          tabindex="0"
+                          href="/docs/tutorial-pong/game-render"
+                          >Game Render</a
+                        >
+                      </li>
+                      <li class="menu__list-item">
+                        <a
+                          class="menu__link"
+                          tabindex="0"
+                          href="/docs/tutorial-pong/finish"
+                          >Finished!</a
+                        >
+                      </li>
+                      <li class="menu__list-item">
+                        <a
+                          class="menu__link"
+                          tabindex="0"
+                          href="/docs/tutorial-pong/demo"
+                          >Demo</a
+                        >
+                      </li>
+                    </ul>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </aside>
+          <main class="docMainContainer_3ufF">
+            <div class="container padding-top--md padding-bottom--lg">
+              <div class="row">
+                <div class="col docItemCol_3FnS">
+                  <div class="docItemContainer_33ec">
+                    <article>
+                      <div class="markdown">
+                        <header>
+                          <h1 class="h1Heading_27L5">Game Update</h1>
+                        </header>
+                        <p>
+                          With loop structure and data structures defined for
+                          the game, we now have to use our loop&#x27;s structure
+                          to update our data, bringing one game state to the
+                          next.
+                        </p>
+                        <h2>
+                          <a
+                            aria-hidden="true"
+                            tabindex="-1"
+                            class="anchor enhancedAnchor_2LWZ"
+                            id="update-structure"
+                          ></a
+                          >Update Structure<a
+                            class="hash-link"
+                            href="#update-structure"
+                            title="Direct link to heading"
+                            >#</a
+                          >
+                        </h2>
+                        <p>
+                          Here&#x27;s a general outline for the structure of our
+                          update function:
+                        </p>
+                        <ul>
+                          <li>Get user input</li>
+                          <li>Handle paddle movement</li>
+                          <li>Check for ball collisions &amp; handle cases</li>
+                          <li>Move the ball</li>
+                          <li>Move the AI paddle</li>
+                          <li>Check gamestates</li>
+                        </ul>
+                        <h2>
+                          <a
+                            aria-hidden="true"
+                            tabindex="-1"
+                            class="anchor enhancedAnchor_2LWZ"
+                            id="user-input"
+                          ></a
+                          >User Input<a
+                            class="hash-link"
+                            href="#user-input"
+                            title="Direct link to heading"
+                            >#</a
+                          >
+                        </h2>
+                        <p>
+                          First thing&#x27;s first, users interact with Pong
+                          through the joystick. Without the user input, nothing
+                          interesting happens in the game.
+                        </p>
+                        <p>
+                          In pong, the user input we care about is just the
+                          Joystick&#x27;s y-axis position. This is because the
+                          only thing the user can control in Pong is if the
+                          joystick is going to move up or down vertically on the
+                          screen.
+                        </p>
+                        <p>
+                          So, let&#x27;s begin working on
+                          <code>void updateGame()</code> by writing code to
+                          determine the joystick&#x27;s y-position during a game
+                          tick:
+                        </p>
+                        <div class="codeBlockContainer_K1bP">
+                          <div
+                            style="color: #393a34; background-color: #f6f8fa"
+                            class="codeBlockTitle_eoMF"
+                          >
+                            pong.ino
+                          </div>
+                          <div class="codeBlockContent_hGly c">
+                            <pre
+                              tabindex="0"
+                              class="prism-code language-c codeBlock_23N8 thin-scrollbar codeBlockWithTitle_2JqI"
+                              style="color: #393a34; background-color: #f6f8fa"
+                            ><code class="codeBlockLines_39YC"><span class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">void</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">updateGame</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token comment" style="color:#999988;font-style:italic">// Read joystick values</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword" style="color:#00009f">int</span><span class="token plain"> yValue </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">analogRead</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">joyY</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword" style="color:#00009f">int</span><span class="token plain"> yMap </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">map</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">yValue</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1023</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">-</span><span class="token number" style="color:#36acaa">10</span><span class="token punctuation" style="color:#393A34">,</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">10</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span></span></code></pre>
+                            <button
+                              type="button"
+                              aria-label="Copy code to clipboard"
+                              class="copyButton_Ue-o clean-btn"
+                            >
+                              Copy
+                            </button>
+                          </div>
+                        </div>
+                        <p>
+                          The above code reads in the Y value from the joystick,
+                          and then maps the raw analog signal rage (0, 4095) to
+                          a more reasonable (-10, 10) range in the variable
+                          yMap.
+                        </p>
+                        <h2>
+                          <a
+                            aria-hidden="true"
+                            tabindex="-1"
+                            class="anchor enhancedAnchor_2LWZ"
+                            id="handle-player-paddle-movement"
+                          ></a
+                          >Handle Player Paddle Movement<a
+                            class="hash-link"
+                            href="#handle-player-paddle-movement"
+                            title="Direct link to heading"
+                            >#</a
+                          >
+                        </h2>
+                        <p>
+                          With the Y-Axis value read in, we can handle moving
+                          the player&#x27;s paddle.
+                        </p>
+                        <p>
+                          In particular, we should check if the Joystick&#x27;s
+                          Y-Axis is offset by some minimum threshold. If it is,
+                          we should then determine the direction the player
+                          wants the paddle to move. During this process we will
+                          also wrap in out-of-bounds collision detection, as it
+                          ends up being natural to check for:
+                        </p>
+                        <div class="codeBlockContainer_K1bP">
+                          <div
+                            style="color: #393a34; background-color: #f6f8fa"
+                            class="codeBlockTitle_eoMF"
+                          >
+                            stackit.ino
+                          </div>
+                          <div class="codeBlockContent_hGly c">
+                            <pre
+                              tabindex="0"
+                              class="prism-code language-c codeBlock_23N8 thin-scrollbar codeBlockWithTitle_2JqI"
+                              style="color: #393a34; background-color: #f6f8fa"
+                            ><code class="codeBlockLines_39YC"><span class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">void</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">updateGame</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// ABOVE CODE</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block">
+</span></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token comment" style="color:#999988;font-style:italic">// Handle player paddle movement logic</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token function" style="color:#d73a49">abs</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">yMap</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&gt;</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">2</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Ensure the magnitude of joystick y-axis offset is above threshold of 2</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">      </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">yMap </span><span class="token operator" style="color:#393A34">&gt;</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Check if the joystick is pointing up</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">          </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">playerPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">y </span><span class="token operator" style="color:#393A34">+</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&lt;=</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">HEIGHT </span><span class="token operator" style="color:#393A34">-</span><span class="token plain"> playerPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">size</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Check if the paddle will go out of bounds</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">              playerPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">y</span><span class="token operator" style="color:#393A34">++</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Move paddle up</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">      </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">else</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Joystick is pointing down</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">          </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">playerPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">y </span><span class="token operator" style="color:#393A34">-</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&gt;=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Check if paddle will go out of bounds</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">              playerPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">y</span><span class="token operator" style="color:#393A34">--</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Move paddle down</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">      </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token punctuation" style="color:#393A34">}</span></span></code></pre>
+                            <button
+                              type="button"
+                              aria-label="Copy code to clipboard"
+                              class="copyButton_Ue-o clean-btn"
+                            >
+                              Copy
+                            </button>
+                          </div>
+                        </div>
+                        <p>
+                          As you can see in the code, if we encounter an out of
+                          bounds event we just don&#x27;t update to position of
+                          the paddle, leaving it where it is.
+                        </p>
+                        <h2>
+                          <a
+                            aria-hidden="true"
+                            tabindex="-1"
+                            class="anchor enhancedAnchor_2LWZ"
+                            id="ball-collisions"
+                          ></a
+                          >Ball Collisions<a
+                            class="hash-link"
+                            href="#ball-collisions"
+                            title="Direct link to heading"
+                            >#</a
+                          >
+                        </h2>
+                        <p>
+                          The ball has quite a few collision cases. Namely, the
+                          following are of interest:
+                        </p>
+                        <ul>
+                          <li>
+                            Out of bounds on horizontally on the left (AI
+                            Scores)
+                          </li>
+                          <li>
+                            Out of bounds on horizontally on the right (Player
+                            Scores)
+                          </li>
+                          <li>
+                            Out of bounds on vertically (Ball bounces off)
+                          </li>
+                          <li>
+                            Collides with paddle (Ball bounces off of paddle)
+                          </li>
+                        </ul>
+                        <div class="codeBlockContainer_K1bP">
+                          <div
+                            style="color: #393a34; background-color: #f6f8fa"
+                            class="codeBlockTitle_eoMF"
+                          >
+                            pong.ino
+                          </div>
+                          <div class="codeBlockContent_hGly c">
+                            <pre
+                              tabindex="0"
+                              class="prism-code language-c codeBlock_23N8 thin-scrollbar codeBlockWithTitle_2JqI"
+                              style="color: #393a34; background-color: #f6f8fa"
+                            ><code class="codeBlockLines_39YC"><span class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">void</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">updateGame</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// ABOVE CODE</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block">
+</span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token comment" style="color:#999988;font-style:italic">// Update ball</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">int</span><span class="token plain"> ballColX </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">round</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">ball</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">x </span><span class="token operator" style="color:#393A34">+</span><span class="token plain"> ball</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">xVel</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Calculate new ball x position</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">int</span><span class="token plain"> ballColY </span><span class="token operator" style="color:#393A34">=</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">round</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">ball</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">y </span><span class="token operator" style="color:#393A34">+</span><span class="token plain"> ball</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">yVel</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Calculate new ball y position</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">ballColX </span><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Ball out of bounds left</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">        aiPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">score</span><span class="token operator" style="color:#393A34">++</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Add to player&#x27;s score</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token function" style="color:#d73a49">newRound</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Start new round</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">return</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Stop executing the updateGame function</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">ballColX </span><span class="token operator" style="color:#393A34">&gt;=</span><span class="token plain"> WIDTH</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Ball out of bounds right</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">        playerPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">score</span><span class="token operator" style="color:#393A34">++</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Add to player&#x27;s score</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token function" style="color:#d73a49">newRound</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Start new round</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">return</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Stop executing the updateGame function</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">ballColY </span><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">||</span><span class="token plain"> ballColY </span><span class="token operator" style="color:#393A34">&gt;=</span><span class="token plain"> HEIGHT</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Ball is out of bounds vertically</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">        ball</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">yVel </span><span class="token operator" style="color:#393A34">*=</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">-</span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Reflect the ball off the wall by inverting y-velocity</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token comment" style="color:#999988;font-style:italic">// Ball hits player&#x27;s paddle</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">ballColX </span><span class="token operator" style="color:#393A34">==</span><span class="token plain"> playerPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">x</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&amp;&amp;</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">ballColY </span><span class="token operator" style="color:#393A34">&gt;=</span><span class="token plain"> playerPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">y</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&amp;&amp;</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">ballColY </span><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain"> playerPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">y </span><span class="token operator" style="color:#393A34">+</span><span class="token plain"> playerPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">size</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">        ball</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">xVel </span><span class="token operator" style="color:#393A34">*=</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">-</span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Reflect ball off of paddle by inverting x-velocity</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token comment" style="color:#999988;font-style:italic">// Ball hits AI&#x27;s paddle</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">ballColX </span><span class="token operator" style="color:#393A34">==</span><span class="token plain"> aiPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">x</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&amp;&amp;</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">ballColY </span><span class="token operator" style="color:#393A34">&gt;=</span><span class="token plain"> aiPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">y</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&amp;&amp;</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">ballColY </span><span class="token operator" style="color:#393A34">&lt;</span><span class="token plain"> aiPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">y </span><span class="token operator" style="color:#393A34">+</span><span class="token plain"> aiPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">size</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">        ball</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">xVel </span><span class="token operator" style="color:#393A34">*=</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">-</span><span class="token number" style="color:#36acaa">1</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Reflect ball off of paddle by inverting x-velocity</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span></span></code></pre>
+                            <button
+                              type="button"
+                              aria-label="Copy code to clipboard"
+                              class="copyButton_Ue-o clean-btn"
+                            >
+                              Copy
+                            </button>
+                          </div>
+                        </div>
+                        <h2>
+                          <a
+                            aria-hidden="true"
+                            tabindex="-1"
+                            class="anchor enhancedAnchor_2LWZ"
+                            id="move-the-ball"
+                          ></a
+                          >Move the Ball<a
+                            class="hash-link"
+                            href="#move-the-ball"
+                            title="Direct link to heading"
+                            >#</a
+                          >
+                        </h2>
+                        <p>
+                          Now that we&#x27;ve updated the velocity of the ball
+                          based on possible collision events (and stopped
+                          updating with <code>return</code> if either player has
+                          scored), we can simply add the velocity to the
+                          ball&#x27;s position to get the updated ball position.
+                        </p>
+                        <div class="codeBlockContainer_K1bP">
+                          <div
+                            style="color: #393a34; background-color: #f6f8fa"
+                            class="codeBlockTitle_eoMF"
+                          >
+                            pong.ino
+                          </div>
+                          <div class="codeBlockContent_hGly c">
+                            <pre
+                              tabindex="0"
+                              class="prism-code language-c codeBlock_23N8 thin-scrollbar codeBlockWithTitle_2JqI"
+                              style="color: #393a34; background-color: #f6f8fa"
+                            ><code class="codeBlockLines_39YC"><span class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">void</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">updateGame</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// ABOVE CODE</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block">
+</span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token comment" style="color:#999988;font-style:italic">// Move ball</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    ball</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">x </span><span class="token operator" style="color:#393A34">+=</span><span class="token plain"> ball</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">xVel</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    ball</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">y </span><span class="token operator" style="color:#393A34">+=</span><span class="token plain"> ball</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">yVel</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span></span></code></pre>
+                            <button
+                              type="button"
+                              aria-label="Copy code to clipboard"
+                              class="copyButton_Ue-o clean-btn"
+                            >
+                              Copy
+                            </button>
+                          </div>
+                        </div>
+                        <h2>
+                          <a
+                            aria-hidden="true"
+                            tabindex="-1"
+                            class="anchor enhancedAnchor_2LWZ"
+                            id="ai-paddle"
+                          ></a
+                          >AI Paddle<a
+                            class="hash-link"
+                            href="#ai-paddle"
+                            title="Direct link to heading"
+                            >#</a
+                          >
+                        </h2>
+                        <p>
+                          Now comes the interesting part: making an AI paddle.
+                          There&#x27;s a LOT of different ways to go about this.
+                          Some approaches to paddle AI can be highly
+                          sophisticated. Others can be very simple with a clever
+                          idea.
+                        </p>
+                        <p>
+                          A well programmed AI should be good at the game, but
+                          not so good that a player can never beat it. Thus, the
+                          goal of an AI programmer should be to find the sweet
+                          spot in creating an AI that fits the difficultly level
+                          of the game they&#x27;re aiming for.
+                        </p>
+                        <p>
+                          In this tutorial, we&#x27;ll try to make the simplest
+                          &quot;medium&quot; difficulty AI possible. To start,
+                          let&#x27;s create a new function
+                          <code>void aiUpdate()</code> and put it above
+                          <code>void updateGame()</code>:
+                        </p>
+                        <div class="codeBlockContainer_K1bP">
+                          <div
+                            style="color: #393a34; background-color: #f6f8fa"
+                            class="codeBlockTitle_eoMF"
+                          >
+                            pong.ino
+                          </div>
+                          <div class="codeBlockContent_hGly c">
+                            <pre
+                              tabindex="0"
+                              class="prism-code language-c codeBlock_23N8 thin-scrollbar codeBlockWithTitle_2JqI"
+                              style="color: #393a34; background-color: #f6f8fa"
+                            ><code class="codeBlockLines_39YC"><span class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">void</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">aiUpdate</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span></span></code></pre>
+                            <button
+                              type="button"
+                              aria-label="Copy code to clipboard"
+                              class="copyButton_Ue-o clean-btn"
+                            >
+                              Copy
+                            </button>
+                          </div>
+                        </div>
+                        <p>The update procedure behind our AI will be this:</p>
+                        <ul>
+                          <li>
+                            Generate a random number between 0-4. If the number
+                            is 4, continue. Otherwise don&#x27;t move the AI
+                            paddle.
+                          </li>
+                          <li>
+                            Check if the paddle&#x27;s middle is above or below
+                            the ball&#x27;s current position.
+                          </li>
+                          <li>
+                            If above, move the paddle down. Otherwise move the
+                            paddle up.
+                          </li>
+                        </ul>
+                        <p>
+                          Extremely simple! Here&#x27;s the code putting that to
+                          action:
+                        </p>
+                        <div class="codeBlockContainer_K1bP">
+                          <div
+                            style="color: #393a34; background-color: #f6f8fa"
+                            class="codeBlockTitle_eoMF"
+                          >
+                            pong.ino
+                          </div>
+                          <div class="codeBlockContent_hGly c">
+                            <pre
+                              tabindex="0"
+                              class="prism-code language-c codeBlock_23N8 thin-scrollbar codeBlockWithTitle_2JqI"
+                              style="color: #393a34; background-color: #f6f8fa"
+                            ><code class="codeBlockLines_39YC"><span class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">void</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">aiUpdate</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">(</span><span class="token function" style="color:#d73a49">rand</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">%</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">5</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">%</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">4</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">==</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">aiPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">y </span><span class="token operator" style="color:#393A34">+</span><span class="token plain"> aiPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">size </span><span class="token operator" style="color:#393A34">/</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">2</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&gt;</span><span class="token plain"> ball</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">y</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">            </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">aiPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">y </span><span class="token operator" style="color:#393A34">-</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&gt;=</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">0</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">                aiPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">y</span><span class="token operator" style="color:#393A34">--</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"> </span><span class="token keyword" style="color:#00009f">else</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">            </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">aiPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">y </span><span class="token operator" style="color:#393A34">+</span><span class="token plain"> </span><span class="token number" style="color:#36acaa">1</span><span class="token plain"> </span><span class="token operator" style="color:#393A34">&lt;=</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">HEIGHT </span><span class="token operator" style="color:#393A34">-</span><span class="token plain"> playerPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">size</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">                aiPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">y</span><span class="token operator" style="color:#393A34">++</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">}</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span></span></code></pre>
+                            <button
+                              type="button"
+                              aria-label="Copy code to clipboard"
+                              class="copyButton_Ue-o clean-btn"
+                            >
+                              Copy
+                            </button>
+                          </div>
+                        </div>
+                        <div
+                          class="admonition admonition-tip alert alert--success"
+                        >
+                          <div class="admonition-heading">
+                            <h5>
+                              <span class="admonition-icon"
+                                ><svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="12"
+                                  height="16"
+                                  viewBox="0 0 12 16"
+                                >
+                                  <path
+                                    fill-rule="evenodd"
+                                    d="M6.5 0C3.48 0 1 2.19 1 5c0 .92.55 2.25 1 3 1.34 2.25 1.78 2.78 2 4v1h5v-1c.22-1.22.66-1.75 2-4 .45-.75 1-2.08 1-3 0-2.81-2.48-5-5.5-5zm3.64 7.48c-.25.44-.47.8-.67 1.11-.86 1.41-1.25 2.06-1.45 3.23-.02.05-.02.11-.02.17H5c0-.06 0-.13-.02-.17-.2-1.17-.59-1.83-1.45-3.23-.2-.31-.42-.67-.67-1.11C2.44 6.78 2 5.65 2 5c0-2.2 2.02-4 4.5-4 1.22 0 2.36.42 3.22 1.19C10.55 2.94 11 3.94 11 5c0 .66-.44 1.78-.86 2.48zM4 14h5c-.23 1.14-1.3 2-2.5 2s-2.27-.86-2.5-2z"
+                                  ></path></svg></span
+                              >tip
+                            </h5>
+                          </div>
+                          <div class="admonition-content">
+                            <p>
+                              We can even change the &quot;difficulty&quot; of
+                              the AI by changing the random number generation
+                              step to include more numbers (say, 0-10, leaving a
+                              10% chance of moving the paddle). Try messing with
+                              it and see what happens!
+                            </p>
+                          </div>
+                        </div>
+                        <p>
+                          Now we can just go ahead and call this function from
+                          our <code>gameUpdate</code> function to update the AI
+                          paddles position each update tick:
+                        </p>
+                        <div class="codeBlockContainer_K1bP">
+                          <div
+                            style="color: #393a34; background-color: #f6f8fa"
+                            class="codeBlockTitle_eoMF"
+                          >
+                            pong.ino
+                          </div>
+                          <div class="codeBlockContent_hGly c">
+                            <pre
+                              tabindex="0"
+                              class="prism-code language-c codeBlock_23N8 thin-scrollbar codeBlockWithTitle_2JqI"
+                              style="color: #393a34; background-color: #f6f8fa"
+                            ><code class="codeBlockLines_39YC"><span class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">void</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">updateGame</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// ABOVE CODE</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block">
+</span></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token comment" style="color:#999988;font-style:italic">// Update AI</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">  </span><span class="token function" style="color:#d73a49">aiUpdate</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain"></span><span class="token punctuation" style="color:#393A34">}</span></span></code></pre>
+                            <button
+                              type="button"
+                              aria-label="Copy code to clipboard"
+                              class="copyButton_Ue-o clean-btn"
+                            >
+                              Copy
+                            </button>
+                          </div>
+                        </div>
+                        <h2>
+                          <a
+                            aria-hidden="true"
+                            tabindex="-1"
+                            class="anchor enhancedAnchor_2LWZ"
+                            id="game-states"
+                          ></a
+                          >Game States<a
+                            class="hash-link"
+                            href="#game-states"
+                            title="Direct link to heading"
+                            >#</a
+                          >
+                        </h2>
+                        <p>
+                          At the end of the update process, we have to check our
+                          game state cases to determine if any special actions
+                          need to be performed. In particular, we need to decide
+                          if the player has won or lost the game.
+                        </p>
+                        <p>
+                          To accomplish this, we need to break down what it
+                          specifically means for each case to be true.
+                        </p>
+                        <h3>
+                          <a
+                            aria-hidden="true"
+                            tabindex="-1"
+                            class="anchor enhancedAnchor_2LWZ"
+                            id="winning"
+                          ></a
+                          >Winning<a
+                            class="hash-link"
+                            href="#winning"
+                            title="Direct link to heading"
+                            >#</a
+                          >
+                        </h3>
+                        <p>
+                          For a player to have won, they just need to have
+                          scored <code>WINNING_SCORE</code> points.
+                        </p>
+                        <p>
+                          We&#x27;ll just have the screen flash green when the
+                          player wins and then reset the game:
+                        </p>
+                        <div class="codeBlockContainer_K1bP">
+                          <div
+                            style="color: #393a34; background-color: #f6f8fa"
+                            class="codeBlockTitle_eoMF"
+                          >
+                            pong.ino
+                          </div>
+                          <div class="codeBlockContent_hGly c">
+                            <pre
+                              tabindex="0"
+                              class="prism-code language-c codeBlock_23N8 thin-scrollbar codeBlockWithTitle_2JqI"
+                              style="color: #393a34; background-color: #f6f8fa"
+                            ><code class="codeBlockLines_39YC"><span class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">void</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">updateGame</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// ABOVE CODE</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block">
+</span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token comment" style="color:#999988;font-style:italic">// Check winning gamestate</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">playerPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">score </span><span class="token operator" style="color:#393A34">==</span><span class="token plain"> WINNING_SCORE</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token function" style="color:#d73a49">renderBlink</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">0x00ff00</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Blink green</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token function" style="color:#d73a49">initGame</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Reset game</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">return</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Stop updating</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">}</span></span></code></pre>
+                            <button
+                              type="button"
+                              aria-label="Copy code to clipboard"
+                              class="copyButton_Ue-o clean-btn"
+                            >
+                              Copy
+                            </button>
+                          </div>
+                        </div>
+                        <div
+                          class="admonition admonition-note alert alert--secondary"
+                        >
+                          <div class="admonition-heading">
+                            <h5>
+                              <span class="admonition-icon"
+                                ><svg
+                                  xmlns="http://www.w3.org/2000/svg"
+                                  width="14"
+                                  height="16"
+                                  viewBox="0 0 14 16"
+                                >
+                                  <path
+                                    fill-rule="evenodd"
+                                    d="M6.3 5.69a.942.942 0 0 1-.28-.7c0-.28.09-.52.28-.7.19-.18.42-.28.7-.28.28 0 .52.09.7.28.18.19.28.42.28.7 0 .28-.09.52-.28.7a1 1 0 0 1-.7.3c-.28 0-.52-.11-.7-.3zM8 7.99c-.02-.25-.11-.48-.31-.69-.2-.19-.42-.3-.69-.31H6c-.27.02-.48.13-.69.31-.2.2-.3.44-.31.69h1v3c.02.27.11.5.31.69.2.2.42.31.69.31h1c.27 0 .48-.11.69-.31.2-.19.3-.42.31-.69H8V7.98v.01zM7 2.3c-3.14 0-5.7 2.54-5.7 5.68 0 3.14 2.56 5.7 5.7 5.7s5.7-2.55 5.7-5.7c0-3.15-2.56-5.69-5.7-5.69v.01zM7 .98c3.86 0 7 3.14 7 7s-3.14 7-7 7-7-3.12-7-7 3.14-7 7-7z"
+                                  ></path></svg></span
+                              >note
+                            </h5>
+                          </div>
+                          <div class="admonition-content">
+                            <p>
+                              We assume the existence of a function called
+                              <code>renderBlink(hex)</code>. We will implement
+                              this feature in <strong>Render Game</strong>.
+                            </p>
+                          </div>
+                        </div>
+                        <h3>
+                          <a
+                            aria-hidden="true"
+                            tabindex="-1"
+                            class="anchor enhancedAnchor_2LWZ"
+                            id="losing"
+                          ></a
+                          >Losing<a
+                            class="hash-link"
+                            href="#losing"
+                            title="Direct link to heading"
+                            >#</a
+                          >
+                        </h3>
+                        <p>
+                          For a player to have lost, the AI needs to have scored
+                          <code>WINNING_SCORE</code> points.
+                        </p>
+                        <p>
+                          Similar to the winning case, we&#x27;ll just have the
+                          screen flash red when the player loses and then reset
+                          the game:
+                        </p>
+                        <div class="codeBlockContainer_K1bP">
+                          <div
+                            style="color: #393a34; background-color: #f6f8fa"
+                            class="codeBlockTitle_eoMF"
+                          >
+                            pong.ino
+                          </div>
+                          <div class="codeBlockContent_hGly c">
+                            <pre
+                              tabindex="0"
+                              class="prism-code language-c codeBlock_23N8 thin-scrollbar codeBlockWithTitle_2JqI"
+                              style="color: #393a34; background-color: #f6f8fa"
+                            ><code class="codeBlockLines_39YC"><span class="token-line" style="color:#393A34"><span class="token keyword" style="color:#00009f">void</span><span class="token plain"> </span><span class="token function" style="color:#d73a49">updateGame</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// ABOVE CODE</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain" style="display:inline-block">
+</span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token comment" style="color:#999988;font-style:italic">// Check losing game state</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token keyword" style="color:#00009f">if</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">(</span><span class="token plain">aiPaddle</span><span class="token punctuation" style="color:#393A34">.</span><span class="token plain">score </span><span class="token operator" style="color:#393A34">==</span><span class="token plain"> WINNING_SCORE</span><span class="token punctuation" style="color:#393A34">)</span><span class="token plain"> </span><span class="token punctuation" style="color:#393A34">{</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token function" style="color:#d73a49">renderBlink</span><span class="token punctuation" style="color:#393A34">(</span><span class="token number" style="color:#36acaa">0xff0000</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Blink red</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token function" style="color:#d73a49">initGame</span><span class="token punctuation" style="color:#393A34">(</span><span class="token punctuation" style="color:#393A34">)</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Reset game</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">        </span><span class="token keyword" style="color:#00009f">return</span><span class="token punctuation" style="color:#393A34">;</span><span class="token plain"> </span><span class="token comment" style="color:#999988;font-style:italic">// Stop updating</span><span class="token plain"></span></span><span class="token-line" style="color:#393A34"><span class="token plain">    </span><span class="token punctuation" style="color:#393A34">}</span></span></code></pre>
+                            <button
+                              type="button"
+                              aria-label="Copy code to clipboard"
+                              class="copyButton_Ue-o clean-btn"
+                            >
+                              Copy
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <footer class="row docusaurus-mt-lg">
+                        <div class="col">
+                          <a
+                            href="https://github.com/GameCodeAcademy/docs/tutorial-pong/game-update.md"
+                            target="_blank"
+                            rel="noreferrer noopener"
+                            ><svg
+                              fill="currentColor"
+                              height="20"
+                              width="20"
+                              viewBox="0 0 40 40"
+                              class="iconEdit_2_ui"
+                              aria-hidden="true"
+                            >
+                              <g>
+                                <path
+                                  d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"
+                                ></path>
+                              </g></svg
+                            >Edit this page</a
+                          >
+                        </div>
+                        <div class="col lastUpdated_3DPF"></div>
+                      </footer>
+                    </article>
+                    <nav
+                      class="pagination-nav docusaurus-mt-lg"
+                      aria-label="Docs pages navigation"
+                    >
+                      <div class="pagination-nav__item">
+                        <a
+                          class="pagination-nav__link"
+                          href="/docs/tutorial-pong/game-data"
+                          ><div class="pagination-nav__sublabel">Previous</div>
+                          <div class="pagination-nav__label">
+                            « Game Data
+                          </div></a
+                        >
+                      </div>
+                      <div
+                        class="pagination-nav__item pagination-nav__item--next"
+                      >
+                        <a
+                          class="pagination-nav__link"
+                          href="/docs/tutorial-pong/game-render"
+                          ><div class="pagination-nav__sublabel">Next</div>
+                          <div class="pagination-nav__label">
+                            Game Render »
+                          </div></a
+                        >
+                      </div>
+                    </nav>
+                  </div>
+                </div>
+                <div class="col col--3">
+                  <div class="tableOfContents_35-E thin-scrollbar">
+                    <ul
+                      class="table-of-contents table-of-contents__left-border"
+                    >
+                      <li>
+                        <a
+                          href="#update-structure"
+                          class="table-of-contents__link"
+                          >Update Structure</a
+                        >
+                      </li>
+                      <li>
+                        <a href="#user-input" class="table-of-contents__link"
+                          >User Input</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="#handle-player-paddle-movement"
+                          class="table-of-contents__link"
+                          >Handle Player Paddle Movement</a
+                        >
+                      </li>
+                      <li>
+                        <a
+                          href="#ball-collisions"
+                          class="table-of-contents__link"
+                          >Ball Collisions</a
+                        >
+                      </li>
+                      <li>
+                        <a href="#move-the-ball" class="table-of-contents__link"
+                          >Move the Ball</a
+                        >
+                      </li>
+                      <li>
+                        <a href="#ai-paddle" class="table-of-contents__link"
+                          >AI Paddle</a
+                        >
+                      </li>
+                      <li>
+                        <a href="#game-states" class="table-of-contents__link"
+                          >Game States</a
+                        >
+                        <ul>
+                          <li>
+                            <a href="#winning" class="table-of-contents__link"
+                              >Winning</a
+                            >
+                          </li>
+                          <li>
+                            <a href="#losing" class="table-of-contents__link"
+                              >Losing</a
+                            >
+                          </li>
+                        </ul>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </main>
+        </div>
+      </div>
+      <footer class="footer footer--dark">
+        <div class="container">
+          <div class="row footer__links">
+            <div class="col footer__col">
+              <div class="footer__title">Docs</div>
+              <ul class="footer__items">
+                <li class="footer__item">
+                  <a class="footer__link-item" href="/docs/intro"
+                    >GCA Game Tutorials</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="col footer__col">
+              <div class="footer__title">Contact</div>
+              <ul class="footer__items">
+                <li class="footer__item">
+                  <div>sales@gamecodeacademy.org</div>
+                </li>
+              </ul>
+            </div>
+            <div class="col footer__col">
+              <div class="footer__title">More</div>
+              <ul class="footer__items">
+                <li class="footer__item">
+                  <a
+                    href="https://gamecodeacademy.org"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="footer__link-item"
+                    >Shop</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+          <div class="footer__bottom text--center">
+            <div class="footer__copyright">
+              Copyright ©2021 GameCodeAcademy.
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+    <script src="/assets/js/runtime~main.f385b889.js"></script>
+    <script src="/assets/js/main.25520d17.js"></script>
+  </body>
 </html>
