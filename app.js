@@ -46,12 +46,16 @@ app.use(function (req, res, next) {
             res.writeHead(200, { "Content-Type": "application/json" });
             res.write('{}');
             res.end();
+            return;
         } else {
             res.writeHead(400, { "Content-Type": "application/json" });
             res.write('{}');
             res.end();
+            return;
         }
     }
+
+    next();
 });
 
 // Check verification
