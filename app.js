@@ -11,15 +11,16 @@ let private_dir = new(static.Server)(path.join(__dirname, 'private'));
 let public_dir = new(static.Server)(path.join(__dirname, 'public'));
 
 let app = express();
+const APP_SECRET = '5732891djjAA';
 
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(session({secret:'5732891djjAA'}));
+app.use(session({secret: APP_SECRET}));
 
 const ACCESS_COOKIE = 'gca_unlock';
 const ACCESS_COOKIE_VALUE = 'verified';
-app.use(cookieParser());
+app.use(cookieParser(APP_SECRET));
 app.use(bodyParser.json());
 
 // Handle code send request
