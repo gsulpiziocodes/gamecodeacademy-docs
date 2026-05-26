@@ -27,16 +27,13 @@ app.use(function (req, res, next) {
     }
     let path = req.path;
     if (path === '/verifyCode') {
-        const rawCode = req?.body?.code;
-        const normalizedCode = rawCode == null ? '' : String(rawCode).trim();
+        const body = req.body;
 
-        if (normalizedCode && codes.includes(normalizedCode)) {
-            req.session.code = normalizedCode;
-            req.session.save(() => {
-                res.writeHead(200, { "Content-Type": "application/json" });
-                res.write('{}');
-                res.end();
-            });
+        if (body && body.code && codes.includes(body.code)) {
+            req.session.code = body.code;
+            res.writeHead(200, { "Content-Type": "application/json" });
+            res.write('{}');
+            res.end();
         } else {
             res.writeHead(400, { "Content-Type": "application/json" });
             res.write('{}');
