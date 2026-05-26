@@ -2,7 +2,6 @@ let express = require('express');
 let path = require('path');
 let cookieParser = require('cookie-parser');
 let logger = require('morgan');
-let session = require('express-session');
 let codes = require('./codes');
 const bodyParser = require('body-parser');
 let static = require('node-static');
@@ -16,12 +15,20 @@ const APP_SECRET = '5732891djjAA';
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(session({secret: APP_SECRET}));
 
 const ACCESS_COOKIE = 'gca_unlock';
 const ACCESS_COOKIE_VALUE = 'verified';
 app.use(cookieParser(APP_SECRET));
 app.use(bodyParser.json());
+
+app.get('/health', function(req, res) {
+    res.status(200).json({ ok: true });
+});
+
+app.post('/lock', function(req, res) {
+    res.clearCookie(ACCESS_COOKIE, { path: '/' });
+    res.status(200).json({ ok: true });
+});
 
 // Handle code send request
 app.use(function (req, res, next) {
